@@ -15,6 +15,8 @@ class Page {
   private $options = [];
   //algumas opcoes padroes
   private $defaults = [
+    "header"=>true,
+    "footer"=>true,
 		"data"=>[]
 	];
 
@@ -39,7 +41,8 @@ class Page {
     $this->setData($this->options["data"]);
 
     //criando tags repetitivas, que serao criada na pasta 'views'
-    $this->tpl->draw("header");
+    //validando o header, caso seja true o header ira aparecer
+    if ($this->options["header"] === true) $this->tpl->draw("header");
 
   }
 
@@ -61,7 +64,7 @@ class Page {
 
   public function __destruct(){
     //criando tags repetitivas, que serao criada na pasta 'views'
-    $this->tpl->draw("footer");
+    if ($this->options["footer"] === true) $this->tpl->draw("footer");
 
   }
 
