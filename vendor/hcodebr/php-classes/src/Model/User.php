@@ -52,11 +52,18 @@ class User extends Model {
       ||
       !(int)$_SESSION[User::SESSION]["iduser"] > 0 //verificando ID
       ||
-      (bool)$_SESSION[User::SESSION]["inadmin"]!==$inadmin//se pode acessa a administracao
+      (bool)$_SESSION[User::SESSION]["inadmin"] !== $inadmin//se pode acessa a administracao
   ){
       header("Location: admin/login");
       exit;
     }
+
+  }
+
+  public static function logout()
+  {
+
+    $_SESSION[User::SESSION] = NULL;
 
   }
 
